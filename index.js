@@ -7,7 +7,7 @@ const {ConnectMongoDb}=require("./connection")
 const URL=require('./Models/url')
 app.use(express.json())
 
-ConnectMongoDb("mongodb+srv://Eyepatch:gamers123@cluster0.d1jhb3w.mongodb.net/ShortUrl")
+ConnectMongoDb("mongodb+srv://Eyepatch:<password>@cluster0.d1jhb3w.mongodb.net/ShortUrl")
 
 app.use('/url',urlRoute)
 
