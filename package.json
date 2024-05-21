@@ -4,6 +4,7 @@
     "nodemon": "^3.1.0"
   },
   "dependencies": {
+    "ejs": "^3.1.10",
     "mongoose": "^8.4.0",
     "nanoid": "^5.0.7",
     "short-uuid": "^5.2.0"

@@ -10,23 +10,18 @@ const handleGenerateNewShortURL=async(req,res)=>{
             error:"You must provide a URL"
         })
     }
-    const url=body.url
     
-    if(!found){
-        return res.status(400).json({
-            success:false,
-            error:"URL already exists"
-        })
-    }
-    else{
         const shortId=short.generate()
         await URL.create({
             shortId:shortId,
             RedirectUrl:body.url,
             visitHistory:[]
         })
-        return res.json({id:shortId})
-    }
+        const temp=res.locals.id=shortId
+        console.log(temp)
+        res.render('home',{shortId})
+        // return res.send(`<h1>${`http://localhost:8000/url/${temp}`}</h1>`)
+    
     
 }
 
