@@ -1,11 +1,16 @@
 const express=require("express")
 const path=require("path")
 const PORT=8000
-const urlRoute=require("./Routes/url")
 const app=express()
 const {ConnectMongoDb}=require("./connection")
 const URL=require('./Models/url')
+const cookieParser=require('cookie-parser')
+const {checkAuth,restrictToLoggedInUser}=require('./middleware/auth')
+
+const urlRoute=require("./Routes/url")
 const StaticRouter=require('./Routes/StaticRouter')
+const userRoute=require('./Routes/user')
+
 
 ConnectMongoDb("mongodb+srv://Eyepatch:gamers123@cluster0.d1jhb3w.mongodb.net/ShortUrl")
 
@@ -15,10 +20,13 @@ app.set('views',path.resolve('./views'))
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:false})) //this middle ware is used to parse data that is coming from a form(form data)
+app.use(cookieParser())
 
-app.use('/url',urlRoute)
 
-app.use('/',StaticRouter)
+app.use('/url',restrictToLoggedInUser ,urlRoute)
+app.use('/user',userRoute)
+app.use('/',checkAuth,StaticRouter)
+
 
 app.get("/test",async(req,res)=>{
     const allUrls=await URL.find({})

@@ -15,7 +15,8 @@ const handleGenerateNewShortURL=async(req,res)=>{
         await URL.create({
             shortId:shortId,
             RedirectUrl:body.url,
-            visitHistory:[]
+            visitHistory:[],
+            createdBy:req.user._id
         })
         const temp=res.locals.id=shortId
         console.log(temp)
