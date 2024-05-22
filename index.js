@@ -12,7 +12,7 @@ const StaticRouter=require('./Routes/StaticRouter')
 const userRoute=require('./Routes/user')
 
 
-ConnectMongoDb("mongodb+srv://Eyepatch:gamers123@cluster0.d1jhb3w.mongodb.net/ShortUrl")
+ConnectMongoDb("mongodb+srv://<password>@cluster0.d1jhb3w.mongodb.net/ShortUrl")
 
 app.set("view engine","ejs")
 app.set('views',path.resolve('./views'))
